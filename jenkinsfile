@@ -1,0 +1,21 @@
+pipeline {
+	agent any
+
+	stages {
+		stage('Fetch Code'){
+			steps {
+				git branch: 'main', url: 'https://github.com/nitinkun/test.git'
+			}
+		}
+		stage('Insall Apache'){
+			steps {
+				sh 'sudo apt install apache2 -y'
+			}
+		}
+		stage('Deploy Application'){
+			steps {
+				sh 'sudo cp * /var/www/html/'
+			}
+		}
+	  }
+}
